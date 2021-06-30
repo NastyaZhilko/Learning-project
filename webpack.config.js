@@ -6,7 +6,7 @@ module.exports = {
     mode: "development",
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
-        path: path.resolve(__dirname, "public"),
+        path: path.resolve(__dirname, "build"),
         filename: "[name].[hash].js",
         publicPath: "/Learning-project/"
     },
