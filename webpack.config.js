@@ -7,11 +7,12 @@ module.exports = {
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "bundle.js",
+        filename: "[name].[hash].js",
         publicPath: "/"
     },
+
     resolve: {
-        extensions: ['.js','.jsx']
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new HTMLWebpackPlugin({template: "./src/index.html"}),
@@ -20,30 +21,30 @@ module.exports = {
     module: {
         rules: [
             {
-                test:/\.(css|less)$/,
+                test: /\.(css|less)$/,
                 use: ["style-loader", "css-loader", "less-loader"]
             },
             {
-                test: /\.(jpg|jpes|png|svg)/,
-                use:['file-loader']
+                test: /\.(jpg|jpeg|png|svg)/,
+                use: ['file-loader']
             },
             {
-                test: /\.m?js$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets:["@babel/preset-env"]
                     }
                 }
             },
             {
-                test: /\.m?jsx$/,
+                test: /\.jsx$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
+                        presets:["@babel/preset-react", "@babel/preset-env"]
                     }
                 }
             }
