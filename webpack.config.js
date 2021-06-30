@@ -8,9 +8,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "[name].[hash].js",
-        publicPath: "/"
+        publicPath: "/Learning-project/"
     },
-
+    devServer: {
+        port: 3000,
+        historyApiFallback: true
+    },
     resolve: {
         extensions: ['.js', '.jsx']
     },
