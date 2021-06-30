@@ -6,8 +6,9 @@ module.exports = {
     mode: "development",
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
-        path: path.join(__dirname, "/dist"),
-        filename: "bundle.js"
+        path: path.resolve(__dirname, "public"),
+        filename: "bundle.js",
+        publicPath: "/"
     },
     devServer: {
         port: 3000,
