@@ -5,11 +5,10 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: "development",
     entry: ["@babel/polyfill", "./src/index.jsx"],
-  /*  output: {
-        path: path.resolve(__dirname, "build"),
-        filename: "[name].[hash].js",
-        publicPath: "/Learning-project/"
-    },*/
+    output: {
+        path: path.join(__dirname, `public`),
+        filename: `bundle.js`
+    },
     devServer: {
         port: 3000,
         historyApiFallback: true
