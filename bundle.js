@@ -4467,7 +4467,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction valueOf(obj) {\n  re
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	!function() {
-/******/ 		__webpack_require__.p = "/static/";
+/******/ 		__webpack_require__.p = "/";
 /******/ 	}();
 /******/ 	
 /************************************************************************/
