@@ -6,8 +6,8 @@ module.exports = {
     mode: "development",
     entry: ["@babel/polyfill", "./src/index.jsx"],
     output: {
-        filename: `bundle.js`,
-        path: path.join(__dirname, `public`)
+        path: path.join(__dirname, "/public"),
+        filename: "bundle.js"
     },
     devServer: {
         port: 3000,
@@ -36,7 +36,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets:["@babel/preset-env"]
+                        presets: ["@babel/preset-env"]
                     }
                 }
             },
@@ -46,7 +46,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets:["@babel/preset-react", "@babel/preset-env"]
+                        presets: ["@babel/preset-react", "@babel/preset-env"]
                     }
                 }
             }
