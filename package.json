@@ -9,6 +9,7 @@
     "start": "webpack serve --open",
     "dev": "webpack serve",
     "build": "webpack",
+    "predeploy": "webpack",
     "deploy": "gh-pages -d build"
   },
   "author": "",
