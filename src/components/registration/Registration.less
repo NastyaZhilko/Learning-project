@@ -9,7 +9,8 @@ input {
   padding: 10px;
   display: block;
   width: 300px;
-  border: none;
+  border: 1px solid #0c234e;
+  border-radius: 3px;
   border-bottom: 1px solid #ccc;
   margin: 10px
 }
@@ -19,10 +20,38 @@ form {
 }
 
 button {
-  background-color: #3333d6;
-  height: 48px;
-  width: 150px;
-  color: black
+  background-color: #5181d8;
+  height: 35px;
+  width: 100px;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid #0c234e;
+  border-radius: 3px;
+}
+
+button:hover {
+  height: 35px;
+  width: 100px;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: 1px solid #0c234e;
+  border-radius: 3px;
+  box-shadow: 0px 5px 7px #2c5275
+}
+
+button:disabled,
+button[disabled]{
+  height: 35px;
+  width: 100px;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 .h2 {
   text-align: center;

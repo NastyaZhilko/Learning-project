@@ -2,10 +2,13 @@ import {passwordAPI} from "../../actions/api";
 
 const REGISTRATION='REGISTRATION'
 const LOADING='LOADING'
+const ERROR='ERROR'
 
 const initialState={
     isRegistration: false,
-    isLoading: false
+    isLoading: false,
+    isError: false,
+    titleError:''
 }
 
 //reducer
@@ -17,13 +20,19 @@ export const registrationReducer = (state = initialState, action) => {
         case LOADING: {
             return {...state, isLoading: action.isLoading}
         }
-        default: return state;
+        case ERROR:{
+            return {...state, isError: true, titleError: action.titleError}
+        }
+        default:
+            return state;
     }
 };
 
 //action creators
 export const registrationAC = (isRegistration) => ({type: REGISTRATION, isRegistration})
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading})
+export const errorAC = (titleError) => ({type: ERROR, titleError})
+
 
 //thunk
 export const registrationTC = (data) => (dispatch) => {
@@ -33,7 +42,7 @@ export const registrationTC = (data) => (dispatch) => {
             dispatch(registrationAC(true))
         })
         .catch(error=>{
-            alert(error)
+            dispatch(errorAC(error))
         })
         .finally(()=>{
             dispatch(loadingAC(false))
