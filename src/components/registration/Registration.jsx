@@ -12,7 +12,7 @@ const Registration = () => {
     //variables from reducer
     const isRegistration = useSelector(state => state.registration.isRegistration)
     const isLoading = useSelector(state => state.registration.isLoading)
-    const isError = useSelector(state => {state.registration.isError})
+    const isError = useSelector((state) => state.registration.isError)
     const titleError = useSelector((state) => state.registration.titleError)
 
     //local state
@@ -80,7 +80,7 @@ const Registration = () => {
 
     const onSubmitRegistration = () => {
         password === confirmPassword &&
-        dispatch(registrationTC({email, password}))
+        dispatch(registrationTC(email, password))
     }
 
 

@@ -1,11 +1,12 @@
-import {authApi} from "../../actions/api";
+import {authApi} from "../../api/api";
 
 const SET_IS_LOGGED_IN = 'SET_IS_LOGGED_IN'
-const SET_ERROR = 'SET_ERROR'
+const ERROR = 'ERROR'
 const LOADING = 'LOADING'
 const initialState = {
     isLoggedIn: false,
-    error: null,
+    isError: false,
+    titleError: '',
     isLoading: false
 }
 
@@ -13,8 +14,9 @@ export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_IS_LOGGED_IN:
             return {...state, isLoggedIn: action.isLoggedIn}
-        case SET_ERROR:
-            return {...state, error: action.error}
+        case ERROR: {
+            return {...state, isError: true, titleError: action.titleError}
+        }
         case LOADING: {
             return {...state, isLoading: action.isLoading}
         }
@@ -23,21 +25,23 @@ export const loginReducer = (state = initialState, action) => {
     }
 };
 
-// actions
+// api
 const setIsLoggedInAC = (isLoggedIn) => ({type: SET_IS_LOGGED_IN, isLoggedIn})
-const setErrorAC = (error) => ({type: SET_ERROR, error})
+const setErrorAC = (titleError) => ({type: ERROR, titleError})
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading: isLoading})
 
+
 // thunks
-export const loginTC = (data) => (dispatch) => {
+export const loginTC = (email, password, rememberMe) => (dispatch) => {
     dispatch(loadingAC(true))
-    authApi.login(data)
+    authApi.login(email, password, rememberMe)
         .then(res => {
             dispatch(setIsLoggedInAC(true))
             dispatch(setErrorAC(null))
+            dispatch(loadingAC(false))
         })
-        .catch(err => {
-            dispatch(setErrorAC("Some error"))
+        .catch(error => {
+            dispatch(setErrorAC(error.response.data.error))
         })
         .finally(() => {
             dispatch(loadingAC(false))
@@ -62,11 +66,12 @@ export const logoutTC = () => (dispatch) => {
         .then(res => {
             dispatch(setIsLoggedInAC(false))
         })
-        .catch(err => {
-            dispatch(setErrorAC("Some error"))
+        .catch(error => {
+            dispatch(setErrorAC(error.response.data.error))
 
         })
         .finally(() => {
-            dispatch(setIsLoggedInAC(false))
+            dispatch(loadingAC(false))
         })
 }
+

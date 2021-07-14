@@ -27,7 +27,7 @@ const Login = () => {
             setValidateError("Email or password required")
             return
         }
-        dispatch(loginTC({email, password, rememberMe}))
+        dispatch(loginTC(email, password, rememberMe))
     }
 
     if (isLoggedIn) {
@@ -45,13 +45,13 @@ const Login = () => {
                 <div>
                     <input
                         placeholder={"Email"}
-                        type={"email"}
+                        name={"email"}
                         value={email}
                         onChange={onChangeEmail}
                     />
                     <input
                         placeholder={"Password"}
-                        type="password"
+                        name="password"
                         value={password}
                         onChange={onChangePassword}
                     />

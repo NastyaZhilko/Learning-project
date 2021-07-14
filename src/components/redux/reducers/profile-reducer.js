@@ -1,4 +1,4 @@
-import {authApi} from "../../actions/api";
+import {authApi} from "../../api/api";
 
 const SET_IS_LOGGED_IN = 'SET_IS_LOGGED_IN'
 const SET_ERROR = 'SET_ERROR'
@@ -24,7 +24,7 @@ export const profileReducer = (state = initialState, action) => {
     }
 };
 
-// actions
+// api
 const setIsLoggedInAC = (isLoggedIn) => ({type: SET_IS_LOGGED_IN, isLoggedIn})
 const setErrorAC = (error) => ({type: SET_ERROR, error})
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading: isLoading})

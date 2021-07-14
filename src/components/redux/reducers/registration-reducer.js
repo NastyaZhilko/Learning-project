@@ -1,4 +1,4 @@
-import {passwordAPI} from "../../actions/api";
+import {passwordAPI} from "../../api/api";
 
 const REGISTRATION='REGISTRATION'
 const LOADING='LOADING'
@@ -8,7 +8,7 @@ const initialState={
     isRegistration: false,
     isLoading: false,
     isError: false,
-    titleError:''
+    titleError: ''
 }
 
 //reducer
@@ -31,18 +31,19 @@ export const registrationReducer = (state = initialState, action) => {
 //action creators
 export const registrationAC = (isRegistration) => ({type: REGISTRATION, isRegistration})
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading})
-export const errorAC = (titleError) => ({type: ERROR, titleError})
+export const errorAC = (titleError) => ({type: ERROR,  titleError})
 
 
 //thunk
-export const registrationTC = (data) => (dispatch) => {
+export const registrationTC = (email, password) => (dispatch) => {
     dispatch(loadingAC(true))
-    passwordAPI.registration(data)
+    passwordAPI.registration(email, password)
         .then((data) => {
             dispatch(registrationAC(true))
+            dispatch(loadingAC(true))
         })
         .catch(error=>{
-            dispatch(errorAC(error))
+            dispatch(errorAC(error.response.data.error))
         })
         .finally(()=>{
             dispatch(loadingAC(false))
